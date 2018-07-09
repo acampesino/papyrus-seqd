@@ -260,6 +260,12 @@ public class MLifelineTest extends MElementTest {
 		Optional<MElement<?>> following = getFixture().following(end.get());
 		assertThat(following, isPresent(wraps(umlInteraction.getFragment("ActionExecutionSpecification1"))));
 		following = getFixture().following(following.get());
+		assertThat(following, isPresent(wraps(umlInteraction.getFragment("Execution1-start"))));
+		following = getFixture().following(following.get());
+		assertThat(following, isPresent(wraps(umlInteraction.getFragment("Execution1"))));
+		following = getFixture().following(following.get());
+		assertThat(following, isPresent(wraps(umlInteraction.getFragment("Execution1-finish"))));
+		following = getFixture().following(following.get());
 		assertThat(following, isPresent(wraps(umlInteraction.getFragment("reply-send"))));
 		following = getFixture().following(following.get());
 		assertThat(following, not(isPresent()));
@@ -444,6 +450,7 @@ public class MLifelineTest extends MElementTest {
 		assertThat(edge.getTarget().getElement(), is(receiver.getElement()));
 	}
 
+	@Override
 	public void testRemove() {
 		MLifeline lifeline = getFixture();
 

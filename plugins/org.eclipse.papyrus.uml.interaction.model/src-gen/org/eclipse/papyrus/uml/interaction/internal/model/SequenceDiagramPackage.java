@@ -748,13 +748,39 @@ public interface SequenceDiagramPackage extends EPackage {
 	int MEXECUTION___GET_DIAGRAM_VIEW = MELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Insert Nested Execution After</em>' operation. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEXECUTION___INSERT_NESTED_EXECUTION_AFTER__MELEMENT_INT_INT_ELEMENT = MELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Insert Nested Execution After</em>' operation. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEXECUTION___INSERT_NESTED_EXECUTION_AFTER__MELEMENT_INT_INT_ECLASS = MELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Element At</em>' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEXECUTION___ELEMENT_AT__INT = MELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>MExecution</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MEXECUTION_OPERATION_COUNT = MELEMENT_OPERATION_COUNT + 2;
+	int MEXECUTION_OPERATION_COUNT = MELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the
@@ -1942,6 +1968,41 @@ public interface SequenceDiagramPackage extends EPackage {
 	EOperation getMExecution__GetDiagramView();
 
 	/**
+	 * Returns the meta object for the
+	 * '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement, int, int, org.eclipse.uml2.uml.Element)
+	 * <em>Insert Nested Execution After</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Insert Nested Execution After</em>' operation.
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement,
+	 *      int, int, org.eclipse.uml2.uml.Element)
+	 * @generated
+	 */
+	EOperation getMExecution__InsertNestedExecutionAfter__MElement_int_int_Element();
+
+	/**
+	 * Returns the meta object for the
+	 * '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement, int, int, org.eclipse.emf.ecore.EClass)
+	 * <em>Insert Nested Execution After</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Insert Nested Execution After</em>' operation.
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement,
+	 *      int, int, org.eclipse.emf.ecore.EClass)
+	 * @generated
+	 */
+	EOperation getMExecution__InsertNestedExecutionAfter__MElement_int_int_EClass();
+
+	/**
+	 * Returns the meta object for the
+	 * '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#elementAt(int) <em>Element At</em>}'
+	 * operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the '<em>Element At</em>' operation.
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#elementAt(int)
+	 * @generated
+	 */
+	EOperation getMExecution__ElementAt__int();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.interaction.model.MOccurrence
 	 * <em>MOccurrence</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2643,6 +2704,32 @@ public interface SequenceDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MEXECUTION___GET_DIAGRAM_VIEW = eINSTANCE.getMExecution__GetDiagramView();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Nested Execution After</b></em>' operation. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation MEXECUTION___INSERT_NESTED_EXECUTION_AFTER__MELEMENT_INT_INT_ELEMENT = eINSTANCE
+				.getMExecution__InsertNestedExecutionAfter__MElement_int_int_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Nested Execution After</b></em>' operation. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation MEXECUTION___INSERT_NESTED_EXECUTION_AFTER__MELEMENT_INT_INT_ECLASS = eINSTANCE
+				.getMExecution__InsertNestedExecutionAfter__MElement_int_int_EClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Element At</b></em>' operation. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EOperation MEXECUTION___ELEMENT_AT__INT = eINSTANCE.getMExecution__ElementAt__int();
 
 		/**
 		 * The meta object literal for the

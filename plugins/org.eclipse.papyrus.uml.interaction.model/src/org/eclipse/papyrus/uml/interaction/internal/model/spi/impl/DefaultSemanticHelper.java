@@ -39,8 +39,8 @@ import org.eclipse.papyrus.uml.interaction.model.spi.DeferredAddCommand;
 import org.eclipse.papyrus.uml.interaction.model.spi.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.interaction.model.spi.DeferredDeleteCommand;
 import org.eclipse.papyrus.uml.interaction.model.spi.DeferredSetCommand;
-import org.eclipse.papyrus.uml.interaction.model.spi.RemovalCommand;
 import org.eclipse.papyrus.uml.interaction.model.spi.ElementRemovalCommandImpl;
+import org.eclipse.papyrus.uml.interaction.model.spi.RemovalCommand;
 import org.eclipse.papyrus.uml.interaction.model.spi.SemanticHelper;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
@@ -124,8 +124,8 @@ public class DefaultSemanticHelper implements SemanticHelper {
 	}
 
 	private RemovalCommand<Element> deferredRemovalCommand(Supplier<? extends Element> toDelete) {
-		return new ElementRemovalCommandImpl(editingDomain, new DeferredDeleteCommand(editingDomain, toDelete),
-				toDelete.get());
+		return new ElementRemovalCommandImpl(editingDomain,
+				new DeferredDeleteCommand(editingDomain, toDelete), toDelete.get());
 	}
 
 	@Override
@@ -475,6 +475,8 @@ public class DefaultSemanticHelper implements SemanticHelper {
 		commands.add(deferredRemovalCommand(execution::getStart));
 		commands.add(deferredRemovalCommand(execution::getFinish));
 		commands.add(removalCommand(execution));
+
+		// remove also "nested" executions
 		return new ElementRemovalCommandImpl(editingDomain, commands);
 	}
 

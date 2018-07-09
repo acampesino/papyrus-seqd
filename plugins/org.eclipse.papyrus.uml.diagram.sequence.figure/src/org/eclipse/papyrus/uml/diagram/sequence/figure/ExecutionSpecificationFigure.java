@@ -37,6 +37,12 @@ public class ExecutionSpecificationFigure extends NodeFigure {
 	}
 
 	@Override
+	public boolean containsPoint(int x, int y) {
+		System.err.println(x + " " + y + ":" + super.containsPoint(x, y));
+		return super.containsPoint(x, y);
+	}
+
+	@Override
 	public ConnectionAnchor getConnectionAnchor(String terminal) {
 
 		if (terminal == null || terminal.isEmpty()) {

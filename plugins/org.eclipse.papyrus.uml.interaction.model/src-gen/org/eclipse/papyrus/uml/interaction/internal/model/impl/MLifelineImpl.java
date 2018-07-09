@@ -140,7 +140,7 @@ public class MLifelineImpl extends MElementImpl<Lifeline> implements MLifeline {
 	@Override
 	public List<MExecutionOccurrence> getExecutionOccurrences() {
 		if (executionOccurrences == null) {
-			executionOccurrences = new EObjectContainmentEList<MExecutionOccurrence>(
+			executionOccurrences = new EObjectContainmentEList<>(
 					MExecutionOccurrence.class, this,
 					SequenceDiagramPackage.MLIFELINE__EXECUTION_OCCURRENCES);
 		}
@@ -155,7 +155,7 @@ public class MLifelineImpl extends MElementImpl<Lifeline> implements MLifeline {
 	@Override
 	public List<MExecution> getExecutions() {
 		if (executions == null) {
-			executions = new EObjectContainmentEList<MExecution>(MExecution.class, this,
+			executions = new EObjectContainmentEList<>(MExecution.class, this,
 					SequenceDiagramPackage.MLIFELINE__EXECUTIONS);
 		}
 		return executions;
@@ -253,7 +253,7 @@ public class MLifelineImpl extends MElementImpl<Lifeline> implements MLifeline {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public CreationCommand<Message> insertMessageAfter(MElement<?> beforeSend, int sendOffset,

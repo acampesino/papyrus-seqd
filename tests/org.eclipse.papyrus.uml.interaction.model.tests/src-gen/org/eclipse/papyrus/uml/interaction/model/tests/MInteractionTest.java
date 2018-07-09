@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.interaction.model.MMessage;
 import org.eclipse.papyrus.uml.interaction.model.MMessageEnd;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.junit.Ignore;
 
 import junit.textui.TestRunner;
 
@@ -253,6 +254,20 @@ public class MInteractionTest extends MElementTest {
 		assertThat("Direct hit on left not found	", getFixture().getLifelineAt(137), isPresent(is(left)));
 		assertThat("Left of the leftmost not found", getFixture().getLifelineAt(52), isPresent(is(left)));
 		assertThat("Right of the righmost was found", getFixture().getLifelineAt(437), not(isPresent()));
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.uml.interaction.model.MInteraction#getBottommostElement() <em>Get
+	 * Bottommost Element</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.uml.interaction.model.MInteraction#getBottommostElement()
+	 * @generated NOT
+	 */
+	@Ignore
+	public void testGetBottommostElement() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 } // MInteractionTest

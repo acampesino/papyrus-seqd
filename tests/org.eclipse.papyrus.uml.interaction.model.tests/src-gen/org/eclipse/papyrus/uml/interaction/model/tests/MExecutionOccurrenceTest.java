@@ -55,7 +55,7 @@ public class MExecutionOccurrenceTest extends MOccurrenceTest {
 	/**
 	 * Constructs a new MExecution Occurrence test case with the given name. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public MExecutionOccurrenceTest(String name) {

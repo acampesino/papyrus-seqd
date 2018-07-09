@@ -12,7 +12,9 @@
  */
 package org.eclipse.papyrus.uml.interaction.model.tests;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -20,8 +22,11 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.papyrus.uml.interaction.model.CreationCommand;
 import org.eclipse.papyrus.uml.interaction.model.MExecution;
-import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.ActionExecutionSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import junit.textui.TestRunner;
 
@@ -92,9 +97,9 @@ public class MExecutionTest extends MElementTest {
 	protected void initializeFixture() {
 		/* remove test may remove execution -> avoid NPE */
 		List<MExecution> executions = interaction.getLifelines().get(1).getExecutions();
-		if(executions.isEmpty()) {
+		if (executions.isEmpty()) {
 			setFixture(null);
-		}else {
+		} else {
 			setFixture(executions.get(0));
 		}
 	}
@@ -121,7 +126,7 @@ public class MExecutionTest extends MElementTest {
 	public void testFollowing() {
 		super.testFollowing();
 
-		assertThat(getFixture().following().get(), wraps(umlInteraction.getFragment("reply-send")));
+		assertThat(getFixture().following().get(), wraps(umlInteraction.getFragment("Execution1-start")));
 	}
 
 	@Override
@@ -189,32 +194,96 @@ public class MExecutionTest extends MElementTest {
 		super.testGetDiagramView();
 		assertThat(getFixture().getDiagramView().get().getType(), is("Shape_Execution_Specification"));
 	}
-	
+
+	/**
+	 * Tests the
+	 * '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement, int, int, org.eclipse.uml2.uml.Element)
+	 * <em>Insert Nested Execution After</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement,
+	 *      int, int, org.eclipse.uml2.uml.Element)
+	 * @generated
+	 */
+	public void testInsertNestedExecutionAfter__MElement_int_int_Element() {
+
+	}
+
+	/**
+	 * Tests the
+	 * '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement, int, int, org.eclipse.emf.ecore.EClass)
+	 * <em>Insert Nested Execution After</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#insertNestedExecutionAfter(org.eclipse.papyrus.uml.interaction.model.MElement,
+	 *      int, int, org.eclipse.emf.ecore.EClass)
+	 * @generated NOT
+	 */
+	@SuppressWarnings("boxing")
+	public void testInsertNestedExecutionAfter__MElement_int_int_EClass() {
+		CreationCommand<ExecutionSpecification> command = getFixture().insertNestedExecutionAfter(
+				getFixture(), 12, 22, UMLPackage.Literals.ACTION_EXECUTION_SPECIFICATION);
+
+		assertThat(command, executable());
+		ExecutionSpecification execSpec = create(command);
+		MExecution exec = getFixture().getOwner().getExecution(execSpec).get();
+
+		// 267 {message} + 15 {offset}
+		assertThat(exec.getOwner(), is(getFixture().getOwner()));
+		assertThat(exec.getTop().getAsInt(), is(129));
+		assertThat(exec.getBottom().getAsInt(), is(151));
+		assertThat(exec.getElement(), instanceOf(ActionExecutionSpecification.class));
+
+		// We didn't actually supply the action, as such
+		assertThat(((ActionExecutionSpecification)exec.getElement()).getAction(), nullValue());
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.uml.interaction.model.MExecution#elementAt(int) <em>Element
+	 * At</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.uml.interaction.model.MExecution#elementAt(int)
+	 * @generated NOT
+	 */
+	public void testElementAt__int() {
+		assertFalse(getFixture().elementAt(0).isPresent()); // element is itself
+		assertFalse(getFixture().elementAt(49).isPresent()); // element is itself
+		// exactly the fragment start
+		assertThat(getFixture().elementAt(50).get(), wraps(umlInteraction.getFragment("Execution1-start")));
+		// after the fragment start
+		assertThat(getFixture().elementAt(60).get(), wraps(umlInteraction.getFragment("Execution1-start")));
+		// exactly the fragment finish
+		assertThat(getFixture().elementAt(90).get(), wraps(umlInteraction.getFragment("Execution1-finish")));
+		// after the fragment finish
+		assertThat(getFixture().elementAt(120).get(), wraps(umlInteraction.getFragment("Execution1-finish")));
+		// outside of the fragment
+		assertThat(getFixture().elementAt(200).get(), wraps(umlInteraction.getFragment("reply-send")));
+	}
+
+	@Override
 	public void testRemove() {
 		MExecution execution = getFixture();
-		
+
 		/* act */
 		Command command = execution.remove();
 		assertThat(command, executable());
 		execute(command);
-		
+
 		/* assert execution with messages removed */
 		/* assert logical representation */
 		assertEquals(2, interaction.getLifelines().size());
 		assertTrue(interaction.getLifelines().get(1).getExecutions().isEmpty());
 		assertTrue(interaction.getMessages().isEmpty());
-		
+
 		/* assert semantics */
 		assertEquals(2, umlInteraction.getLifelines().size());
 		assertTrue(umlInteraction.getLifelines().get(1).getCoveredBys().isEmpty());
 		assertTrue(umlInteraction.getFragments().isEmpty());
 		assertTrue(umlInteraction.getMessages().isEmpty());
-		
+
 		/* assert diagram */
 		assertTrue(sequenceDiagram.getEdges().isEmpty());
 		Optional<Shape> lifeLineView = interaction.getLifelines().get(1).getDiagramView();
 		assertTrue(lifeLineView.isPresent());
-		assertFalse(findTypeInChildren(lifeLineView.get(),"Shape_Execution_Specification").isPresent());
+		assertFalse(findTypeInChildren(lifeLineView.get(), "Shape_Execution_Specification").isPresent());
 	}
 
 } // MExecutionTest

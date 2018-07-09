@@ -14,7 +14,9 @@ package org.eclipse.papyrus.uml.diagram.sequence.figure;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -29,7 +31,7 @@ public class LifelineBodyFigure extends NodeFigure {
 
 	private static Rectangle LINEBOUNDS = Rectangle.SINGLETON;
 
-	private static final int TOLERANCE = 5;
+	private static final int TOLERANCE = 3;
 
 	@Override
 	protected void paintFigure(Graphics graphics) {
@@ -133,4 +135,26 @@ public class LifelineBodyFigure extends NodeFigure {
 		return true;
 	}
 
+	@Override
+	public IFigure findFigureAt(int x, int y, TreeSearch search) {
+		return super.findFigureAt(x, y, search);
+	}
+
+	@Override
+	protected IFigure findDescendantAtExcluding(int x, int y, TreeSearch search) {
+		return super.findDescendantAtExcluding(x, y, search);
+	}
+
+	/**
+	 * @see IFigure#getClientArea(Rectangle)
+	 */
+	@Override
+	public Rectangle getClientArea(Rectangle rect) {
+		rect.setBounds(getBounds());
+		rect.crop(getInsets());
+		if (useLocalCoordinates()) {
+			rect.setLocation(0, 0);
+		}
+		return rect;
+	}
 }
